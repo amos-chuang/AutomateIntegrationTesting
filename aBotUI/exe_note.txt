@@ -1,0 +1,19 @@
+н╫зя /etc/profile е[дJ export
+
+export DISPLAY=:2
+
+
+-------------------------------------
+
+Xvfb :2 -screen 0 1633x768x16 &
+
+
+=====================================
+
+
+java -jar -Dwebdriver.gecko.driver=./geckodriver selenium-server-standalone-3.4.0.jar
+
+
+(wdio handle selenium)
+
+./node_modules/.bin/wdio wdio.conf.js

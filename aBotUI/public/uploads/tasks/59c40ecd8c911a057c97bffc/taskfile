@@ -1,0 +1,73 @@
+{
+	"variables": [],
+	"info": {
+		"name": "匯出",
+		"_postman_id": "a32d6958-ec96-981d-02fb-93043209e20a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[Cybersource] payment/json/createOrder_testNewman",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"success\"] = jsonData.success;",
+							"tests[\"orderNO = \"+environment.CybsCreateOrderNO] = true;"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var now = new Date();",
+							"var year = now.getFullYear();",
+							"var month = now.getMonth()+1;",
+							"var day = now.getDate();",
+							"var prefix = \"9\";",
+							"var currentDate = \"\"+year+month+day;",
+							"if(environment.CurrentDate != currentDate){",
+							"    postman.setEnvironmentVariable(\"CurrentDate\",currentDate);",
+							"    postman.setEnvironmentVariable(\"CybsCreateOrderSeq\",0);",
+							"}",
+							"if(environment.CybsCreateOrderSeq >= 0){",
+							"    postman.setEnvironmentVariable(\"CybsCreateOrderSeq\",parseInt(environment.CybsCreateOrderSeq) + 1);",
+							"}else{",
+							"    postman.setEnvironmentVariable(\"CybsCreateOrderSeq\",1);",
+							"}",
+							"var orderNO = \"\"+environment.CybsCreateOrderSeq;",
+							"while(orderNO.length<4){",
+							"    orderNO = \"0\"+orderNO;",
+							"}",
+							"orderNO = currentDate + prefix + orderNO;",
+							"postman.setEnvironmentVariable(\"CybsCreateOrderNO\",orderNO);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://{{ECGW_URL}}/ECGW/api/payment/json/createOrder",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"transactionHeader\": {\n        \"account\": \"EC_OUSIDEOUT\",\n        \"password\": \"outsideout@1234\",\n        \"clientCode\": \"OS\",\n        \"clientId\": \"OSO0001\",\n        \"siteId\": \"US002017\",\n        \"isoCountry\": \"AM\",\n        \"testMode\": \"Y\"\n    },\n\n     \"data\": {\n         \"body\": {\n         \t\"platformSN\":\"3aaac0a9f1a445fabc28ade1c093fa05\",\n         \t\"paymentGatewaySN\":\"dc07c4cf1ea74ba2954a047c74ada3b5\",\n         \t\"platformUserAccount\":\"7e0e6dff-d7dc-4c26-9d56-c2817fdc1b3a\",\n         \t\"orderNO\":\"{{CybsCreateOrderNO}}\",\n         \t\"amount\":10.2,\n         \t\"installment\":0,\n         \t\"isUseRedeem\":false,\n         \t\"isTestMode\":false,\n         \t\"isAlphaMode\":false,\n         \t\"echo\":\"{\\\"data\\\":\\\"amos\\\"}\",\n         \t\"billToFirstName\": \"\",\n                \"billToLastName\": \"\",\n                \"billToStreet1\": \"\",\n                \"billToCity\": \"\",\n                \"billToState\": \"\",\n                \"billToPostalCode\": \"\",\n                \"billToCountry\": \"\",\n                \"billToPhone\": \"\",\n                \"billToEmail\": \"\",\n                \"shipToFirstName\": \"Joe\",\n                \"shipToLastName\": \"Smith\",\n                \"shipToStreet1\": \"1 My Apartment\",\n                \"shipToCity\": \"Mountain View\",\n                \"shipToState\": \"CA\",\n                \"shipToPostalCode\": \"94043\",\n                \"shipToCountry\": \"US\",\n                \"shipToPhone\": \"912456789\",\n                \"returnUrl\": \"https://tw.yahoo.com\",\n                \"cancelUrl\": \"https://www.google.com\"\n         },\n         \"checkMac\":\"bea0307f4a9dcb6b9a716ac37704f6c94fe73b2501c23cbf8c4c7fd3c23f0eae_Amos_Super_Mac\"\n     }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

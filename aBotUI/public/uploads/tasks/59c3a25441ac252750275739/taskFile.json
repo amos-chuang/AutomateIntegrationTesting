@@ -1,0 +1,34 @@
+{
+	"variables": [],
+	"info": {
+		"name": "匯出",
+		"_postman_id": "a32d6958-ec96-981d-02fb-93043209e20a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://ecgw.asus.com/ECGW/api/control/json/readConfigCache",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[jsonData[0]] = true;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://ecgw.asus.com/ECGW/api/control/json/readConfigCache",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

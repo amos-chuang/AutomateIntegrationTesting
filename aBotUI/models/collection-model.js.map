@@ -1,0 +1,1 @@
+{"version":3,"file":"collection-model.js","sourceRoot":"","sources":["collection-model.ts"],"names":[],"mappings":";;AAAA,qCAAqC;AAOrC,MAAM,gBAAgB,GAAG,IAAI,QAAQ,CAAC,MAAM,CAAC;IACzC,IAAI,EAAE,MAAM;IACZ,WAAW,EAAE,MAAM;CACtB,EAAE,EAAE,UAAU,EAAE,IAAI,EAAE,CAAC,CAAC;AAEzB,MAAM,UAAU,GAAG,QAAQ,CAAC,KAAK,CAAmB,YAAY,EAAE,gBAAgB,CAAC,CAAC;AACpF,kBAAe,UAAU,CAAC"}

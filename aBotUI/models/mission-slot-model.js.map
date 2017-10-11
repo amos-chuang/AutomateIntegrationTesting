@@ -1,0 +1,1 @@
+{"version":3,"file":"mission-slot-model.js","sourceRoot":"","sources":["mission-slot-model.ts"],"names":[],"mappings":";;AAAA,qCAAqC;AASrC,MAAM,iBAAiB,GAAG,IAAI,QAAQ,CAAC,MAAM,CAAC;IAC1C,SAAS,EAAE,MAAM;IACjB,WAAW,EAAE,IAAI;IACjB,MAAM,EAAE,MAAM;CACjB,EAAE,EAAE,UAAU,EAAE,IAAI,EAAE,CAAC,CAAC;AAEzB,MAAM,WAAW,GAAG,QAAQ,CAAC,KAAK,CAAoB,aAAa,EAAE,iBAAiB,CAAC,CAAC;AACxF,kBAAe,WAAW,CAAC"}

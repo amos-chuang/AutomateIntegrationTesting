@@ -1,0 +1,82 @@
+{
+  "id": "8e79991d-45a7-6b6f-d54c-02dddeffdeaa",
+  "name": "Dev",
+  "values": [
+    {
+      "enabled": true,
+      "key": "ECGW_URL",
+      "value": "ecgw-dev.asus.com",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "CurrentDate",
+      "value": "2017913",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "CybsCreateOrderSeq",
+      "value": "13",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "CybsCreateOrderNO",
+      "value": "201791390013",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "Beta_clientJwtToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cGUiOiJKV1QifQ%3D%3D.eyJkZXZlbG9waWQiOiI1VTl4N214cmlMVFNZd1J6IiwiaWF0IjoxNDk3MzIzMzU2fQ%3D%3D.80FLxuOww4bWW3PKXzl%2FRXJVrsi%2BKqXxqckplzz%2F31k%3D",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "PlatformSN",
+      "value": "055b2a351770451eabf59a6bd7a1484f",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "CreateOrderSeq",
+      "value": "2",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "CreateOrderNO",
+      "value": "201791390002",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "ClientJwtToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cGUiOiJKV1QifQ%3D%3D.eyJkZXZlbG9waWQiOiI1VTl4N214cmlMVFNZd1J6IiwiaWF0IjoxNTA0MDU5Mjk3fQ%3D%3D.wmdqAZi6UlrrNWDUtS7WJdVMG%2FdWu%2F7CNeMz7Z4GMOs%3D",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "Dev_clientJwtToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cGUiOiJKV1QifQ%3D%3D.eyJkZXZlbG9waWQiOiI1VTl4N214cmlMVFNZd1J6IiwiaWF0IjoxNTAwMzcwOTc3fQ%3D%3D.4BJXH8NGNTYkjpYKwGrdZD4vGjtgvgsnXIR4l5%2FLXO0%3D",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "SiteID",
+      "value": "FW001978",
+      "type": "text"
+    },
+    {
+      "enabled": true,
+      "key": "MySeq",
+      "value": "7861",
+      "type": "text"
+    }
+  ],
+  "timestamp": 1505298569738,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2017-09-13T10:30:12.371Z",
+  "_postman_exported_using": "Postman/5.2.0"
+}

@@ -1,0 +1,20 @@
+<div class="row tile_count">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Task
+                    <small>-</small>
+                    <%= taskName %>
+                        <small>-</small>
+                        <%= taskCompleteDate %>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <%- taskReportHtml %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- contentFor('scripts') %>
