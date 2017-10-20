@@ -180,6 +180,9 @@ exports.config = {
         global.takeScreenshotCount = 0;
         global.takeScreenshot = function (fileName) {
             global.takeScreenshotCount++;
+            if (!fileName) {
+                fileName = "screenshot";
+            }
             var prefixCount = global.takeScreenshotCount;
             while (prefixCount.toString().length < 5) {
                 prefixCount = "0" + prefixCount;
