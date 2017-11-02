@@ -177,6 +177,79 @@ exports.config = {
             }
         };
 
+        global.takeEntireScreenshotCount = 0;
+        var images = require('images');
+        var fs = require('fs');
+        global.takeEntireScreenshot = function (fileName) {
+            var windowWidth = browser.execute(function () { return Math.max(document.documentElement.clientWidth, window.innerWidth || 0); });
+            windowWidth = windowWidth.value;
+            var windowHeight = browser.execute(function () { return Math.max(document.documentElement.clientHeight, window.innerHeight || 0); });
+            windowHeight = windowHeight.value;
+            var docWidth = browser.execute(function () { return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth); });
+            docWidth = docWidth.value;
+            var docHeight = browser.execute(function () { return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight); });
+            docHeight = docHeight.value;
+
+            var frameList = [];
+            var x = 0;
+            var y = 0;
+            var frameDirPath = "";
+            var frameCount = 0;
+            // warm up whole page
+            while (y < docHeight) {
+                // scroll
+                browser.execute(function (x, y) { window.scrollBy(x, y); }, x, y);
+                y = y + 50;
+            }
+            // take frame
+            y = 0;
+            while (y < docHeight) {
+                var frame = {};
+                frame.x = x;
+                frame.y = y;
+                if (frame.y > (docHeight - windowHeight)) {
+                    frame.y = (docHeight - windowHeight)
+                }
+                frameCount++;
+                frame.file = frameDirPath + "frame_" + frameCount + ".jpg";
+                frameList.push(frame);
+                // reset
+                browser.execute(function (x, y) { window.scrollBy(x, y); }, docWidth * -1, docHeight * -1);
+                // scroll
+                browser.execute(function (x, y) { window.scrollBy(x, y); }, frame.x, frame.y);
+                browser.saveScreenshot(frame.file);
+                y = y + windowHeight - 10;
+            }
+            // stitching
+            var wholePage = images(docWidth, docHeight);
+            for (var i = 0; i < frameList.length; i++) {
+                var frame = frameList[i];
+                if (fs.existsSync(frame.file)) {
+                    wholePage = wholePage.draw(images(frame.file), frame.x, frame.y);
+                } else {
+                    console.log("file not exist: " + frame.file);
+                }
+            }
+            // save
+            var takeEntireScreenshotDirPath = "{aBotScreenshotDirPath}";
+            global.takeEntireScreenshotCount++;
+            var prefixCount = global.takeEntireScreenshotCount;
+            while (prefixCount.toString().length < 5) {
+                prefixCount = "0" + prefixCount;
+            }
+            if (!fileName) {
+                fileName = "screenshot";
+            }
+            wholePage.save(takeEntireScreenshotDirPath + "w_" + prefixCount + "_" + fileName + ".jpg", { quality: 80 });
+            // delete frame
+            for (var i = 0; i < frameList.length; i++) {
+                var frame = frameList[i];
+                if (fs.existsSync(frame.file)) {
+                    fs.unlink(frame.file);
+                }
+            }
+        }
+
         global.takeScreenshotCount = 0;
         global.takeScreenshot = function (fileName) {
             global.takeScreenshotCount++;
@@ -187,17 +260,19 @@ exports.config = {
             while (prefixCount.toString().length < 5) {
                 prefixCount = "0" + prefixCount;
             }
-            browser.saveScreenshot("{aBotScreenshotDirPath}" + prefixCount + "_" + fileName + ".jpg");
+            fileName = prefixCount + "_" + fileName;
+            global.takeEntireScreenshot(fileName);
+            browser.saveScreenshot("{aBotScreenshotDirPath}" + fileName + ".jpg");
         };
 
         global.screenshotRecordCount = 0;
         global.screenshotLive = function () {
-            global.screenshotRecordCount++;
-            var prefixCount = global.screenshotRecordCount;
-            while (prefixCount.toString().length < 5) {
-                prefixCount = "0" + prefixCount;
-            }
-            browser.saveScreenshot("{screenshotLiveDirPath}" + prefixCount + "_live.jpg");
+            // global.screenshotRecordCount++;
+            // var prefixCount = global.screenshotRecordCount;
+            // while (prefixCount.toString().length < 5) {
+            //     prefixCount = "0" + prefixCount;
+            // }
+            // browser.saveScreenshot("{screenshotLiveDirPath}" + prefixCount + "_live.jpg");
         }
 
         global.aBotEnv = '{aBotEnv}';
